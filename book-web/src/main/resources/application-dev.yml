@@ -1,0 +1,8 @@
+grpc:
+  client:
+    channels:
+      book:
+        host: book-service
+        port: 8090
+        tls:
+          enabled: false

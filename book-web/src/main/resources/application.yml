@@ -1,0 +1,24 @@
+server:
+  shutdown: graceful
+
+grpc:
+  server:
+    enabled: false
+  client:
+    channels:
+      book:
+        host: localhost
+        port: 8090
+        tls:
+          enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: ALWAYS

@@ -1,0 +1,23 @@
+grpc:
+  server:
+    enable-server-reflection: true #for grpcurl
+#    health:
+#      use-grpc-probe: true
+
+logging.level.com.airwallex: TRACE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        liveness:
+          include: livenessState,grpcServer
+        readiness:
+          include: readinessState,grpcServer
+      show-details: ALWAYS
