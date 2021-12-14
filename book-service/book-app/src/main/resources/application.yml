@@ -21,3 +21,8 @@ management:
         readiness:
           include: readinessState,grpcServer
       show-details: ALWAYS
+spring:
+  application:
+    name: book-service
+  zipkin:
+    baseUrl: http://zipkin:9411/

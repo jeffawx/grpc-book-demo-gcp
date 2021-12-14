@@ -1,6 +1,8 @@
 server:
   shutdown: graceful
 
+logging.level.com.airwallex: TRACE
+
 grpc:
   server:
     enabled: false
@@ -11,6 +13,7 @@ grpc:
         port: 8090
         tls:
           enabled: false
+    metrics-enabled: false
 
 management:
   endpoints:
@@ -22,3 +25,8 @@ management:
       probes:
         enabled: true
       show-details: ALWAYS
+spring:
+  application:
+    name: book-web
+  zipkin:
+    baseUrl: http://zipkin:9411/
