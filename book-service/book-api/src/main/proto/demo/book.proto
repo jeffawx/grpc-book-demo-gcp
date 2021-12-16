@@ -2,8 +2,11 @@ syntax = "proto3";
 
 package demo;
 
+import "google/protobuf/wrappers.proto";
+
 service BookService {
   rpc List(ListBookRequest) returns (ListBookResponse) {}
+  rpc FindById(google.protobuf.Int64Value) returns (Book) {}
 }
 
 message ListBookRequest {}

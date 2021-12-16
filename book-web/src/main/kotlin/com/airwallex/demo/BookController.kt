@@ -6,6 +6,7 @@ import demo.listBookRequest
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -15,19 +16,29 @@ class BookController(
     @GrpcClient(channel = "book")
     private val bookService: BookServiceRpc
 ) {
-
     private val logger: Logger = LoggerFactory.getLogger(javaClass)
 
-    @GetMapping("/list")
+    @GetMapping("/")
     suspend fun list(): List<Book> {
-        logger.info("sending request to book-service")
+        logger.info("sending 'list' to book-service")
 
         return bookService.list(listBookRequest { }).let {
-            logger.info("get response from book-service")
+            logger.info("get 'list' response from book-service")
 
             it.booksList.map { book ->
                 Book(book.id, book.title, book.author)
             }
+        }
+    }
+
+    @GetMapping("/{id}")
+    suspend fun findById(@PathVariable("id") id: Long): Book {
+        logger.info("sending 'findById' to book-service")
+
+        return bookService.findById(id).let {
+            logger.info("get 'findById' response from book-service")
+
+            Book(it.id, it.title, it.author)
         }
     }
 }

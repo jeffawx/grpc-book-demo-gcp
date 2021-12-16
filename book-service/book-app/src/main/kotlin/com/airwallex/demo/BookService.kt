@@ -27,12 +27,23 @@ class BookService : BookServiceRpc {
 
         return listBookResponse {
             allBooks.forEach {
-                books += book {
-                    id = it.id
-                    title = it.title
-                    author = it.author
-                }
+                books += book(it)
             }
         }
     }
+
+    override suspend fun findById(request: Long): BookOuterClass.Book {
+        logger.info("findById request {}, received on host: {}", request, hostName)
+
+        return allBooks.find { it.id == request }
+            ?.let(::book)
+            ?: throw IllegalArgumentException("book not found: $request")
+    }
+
+    private fun book(book: Book) =
+        book {
+            id = book.id
+            title = book.title
+            author = book.author
+        }
 }
