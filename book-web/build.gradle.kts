@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.airwallex.demo"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-	implementation("com.airwallex.demo:book-api:0.0.1-SNAPSHOT")
+	implementation("com.airwallex.demo:book-api:0.0.1")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 }
 

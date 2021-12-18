@@ -31,6 +31,17 @@ subprojects {
     }
 
     publishing {
+        repositories {
+            maven {
+                url = uri("https://artistry.airwallex.com/repository/lib-release/libs-release-local/")
+
+                credentials {
+                    username = System.getenv("ARTISTRY_USERNAME")
+                    password = System.getenv("ARTISTRY_PASSWORD")
+                }
+            }
+        }
+
         publications {
             val sourcesJar by tasks.registering(Jar::class) {
                 archiveClassifier.set("sources")
