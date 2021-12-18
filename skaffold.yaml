@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta18
+kind: Config
+metadata:
+  name: grpc-book-demo-gcp
+build:
+  artifacts:
+  - image: gcr.io/jfang-test/book-service
+    context: book-service
+    buildpacks:
+      builder: gcr.io/buildpacks/builder:v1
+  - image: gcr.io/jfang-test/book-web
+    context: book-web
+    buildpacks:
+      builder: gcr.io/buildpacks/builder:v1
+deploy:
+  kubectl:
+    manifests:
+    - kubernetes.yaml
