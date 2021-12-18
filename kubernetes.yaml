@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: book-service
-          image: localhost:32000/book-service
+          image: gcr.io/jfang-test/book-service
           imagePullPolicy: Always
           env:
             - name: SPRING_PROFILES_ACTIVE
@@ -66,7 +66,7 @@ spec:
     spec:
       containers:
         - name: book-web
-          image: localhost:32000/book-web
+          image: gcr.io/jfang-test/book-web
           imagePullPolicy: Always
           env:
             - name: SPRING_PROFILES_ACTIVE
@@ -86,45 +86,11 @@ spec:
             periodSeconds: 15
             failureThreshold: 10
 ---
-apiVersion: v1
-kind: Service
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
-  name: book-web
-  labels:
-    app: book-web
+  name: book-web-ingress
 spec:
-  type: ClusterIP
-  clusterIP: "None"
-  selector:
-    app: book-web
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: zipkin
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: zipkin
-  template:
-    metadata:
-      labels:
-        app: zipkin
-    spec:
-      containers:
-        - name: zipkin
-          image: openzipkin/zipkin-slim
-          imagePullPolicy: Never          
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: zipkin
-  labels:
-    app: zipkin
-spec:
-  type: ClusterIP
-  clusterIP: "None"
-  selector:
-    app: zipkin
+  backend:
+    serviceName: book-web
+    servicePort: 8080
