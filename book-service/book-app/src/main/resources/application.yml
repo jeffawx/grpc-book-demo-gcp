@@ -24,3 +24,6 @@ management:
 spring:
   application:
     name: book-service
+  sleuth:
+    sampler:
+      probability: 1

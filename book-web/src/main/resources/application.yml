@@ -27,3 +27,6 @@ management:
 spring:
   application:
     name: book-web
+  sleuth:
+    sampler:
+      probability: 1
