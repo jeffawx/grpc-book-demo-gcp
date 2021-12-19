@@ -6,12 +6,11 @@ build:
   artifacts:
   - image: gcr.io/jfang-test/book-service
     context: book-service
-    buildpacks:
-      builder: gcr.io/buildpacks/builder:v1
+    jib:
+      project: book-app
   - image: gcr.io/jfang-test/book-web
     context: book-web
-    buildpacks:
-      builder: gcr.io/buildpacks/builder:v1
+    jib: {}
 deploy:
   kubectl:
     manifests:
