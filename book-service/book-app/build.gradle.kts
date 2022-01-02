@@ -1,5 +1,5 @@
 plugins {
-    id("com.airwallex.grpc-spring") version "1.1.2"
+    id("com.airwallex.grpc-spring") version "1.1.3"
     id("com.google.cloud.tools.jib") version "3.1.4"
 }
 
