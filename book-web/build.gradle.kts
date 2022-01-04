@@ -18,7 +18,7 @@ repositories {
 dependencies {
 	implementation("com.airwallex.demo:book-api:0.0.1")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
-    runtimeOnly(platform("com.google.cloud:spring-cloud-gcp-dependencies:2.0.6"))
+    runtimeOnly(platform("com.google.cloud:spring-cloud-gcp-dependencies:2.0.7"))
     runtimeOnly("com.google.cloud:spring-cloud-gcp-starter-trace")
     runtimeOnly("com.google.cloud:spring-cloud-gcp-starter-logging")
 }
